@@ -1,14 +1,11 @@
+const path = require('path');
+
 module.exports = ({ env }) => ({
-  defaultConnection: 'default',
-  connections: {
-    default: {
-      connector: 'mongoose',
-      settings: { 
-        url: env('DATABASE_URL'),
-      },
-      options: {
-        ssl: true,
-      },
+  connection: {
+    client: 'sqlite',
+    connection: {
+      filename: path.join(__dirname, '..', env('DATABASE_FILENAME', '.tmp/data.db')),
     },
+    useNullAsDefault: true,
   },
 });
